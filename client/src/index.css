@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light grey background */
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cdc7c7; /* Darker scrollbar */
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ccc7c7;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
