@@ -10,7 +10,6 @@ import AdminProducts from "./pages/admin-view/Products";
 import AdminFeatures from "./pages/admin-view/Features";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/Home";
-import ShoppingCheckout from "./pages/shopping-view/checkout";
 import ShoppingListing from "./pages/shopping-view/Listing";
 import CheckAuth from "./components/common/CheckAuth";
 import UnauthPage from "./pages/unauth-page";
@@ -25,6 +24,7 @@ import ShoppingOrder from "./pages/shopping-view/Order";
 import AdminOrders from "./pages/admin-view/Orders";
 import ShopSearch from "./pages/shopping-view/search";
 import Wishlist from "./pages/shopping-view/Wishlist";
+import ShoppingCheckout from "/src/pages/shopping-view/Checkout.jsx";
 
 function App() {
   const dispatch = useDispatch();
