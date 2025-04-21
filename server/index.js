@@ -8,7 +8,7 @@ import connectDB from "./config/database.js";
 import adminProductRouter from "./routes/admin/products-route.js";
 import adminCategoryRouter from "./routes/admin/category-route.js";
 import adminBrandRouter from "./routes/admin/brand-route.js";
-import adminSubCategoryRouter from "./routes/admin/subCategory-route.js";
+import adminSubCategoryRouter from "./routes/admin/subcategory-route.js";
 import shopProductRouter from "./routes/shop/shopping-product-route.js";
 import shopCartRouter from "./routes/shop/cart-route.js";
 import shopAddressRouter from "./routes/shop/address-route.js";
