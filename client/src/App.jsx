@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "./store/auth-slice";
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import AuthLayout from "./components/auth/Layout";
@@ -11,10 +14,9 @@ import AdminFeatures from "./pages/admin-view/Features";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/Home";
 import ShoppingListing from "./pages/shopping-view/Listing";
+import ShoppingCheckout from "./pages/shopping-view/Checkout";
 import CheckAuth from "./components/common/CheckAuth";
 import UnauthPage from "./pages/unauth-page";
-import { useDispatch, useSelector } from "react-redux";
-import { checkAuth } from "./store/auth-slice";
 import ShoppingLayout from "./components/shopping-view/Layout";
 import AdminCategory from "./pages/admin-view/Category";
 import AdminBrand from "./pages/admin-view/Brand";
@@ -24,76 +26,76 @@ import ShoppingOrder from "./pages/shopping-view/Order";
 import AdminOrders from "./pages/admin-view/Orders";
 import ShopSearch from "./pages/shopping-view/search";
 import Wishlist from "./pages/shopping-view/Wishlist";
-import ShoppingCheckout from "/src/pages/shopping-view/Checkout.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const { isAuthenticated, user, isLoading } = useSelector(
     (state) => state.auth
   );
+
   useEffect(() => {
     dispatch(checkAuth());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
-    return <div>Loding......</div>;
+    return <div>Loading......</div>;
   }
+
   return (
-    <>
-      <Routes>
-        {/* Auth router  */}
-        <Route
-          path="/"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AuthLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
+    <Routes>
+      {/* Auth routes */}
+      <Route
+        path="/"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AuthLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
 
-        {/* Admin routr  */}
-        <Route
-          path="/admin"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AdminLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="products" element={<AdminProducts />} />
-          <Route path="brand" element={<AdminBrand />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="category" element={<AdminCategory />} />
-          <Route path="subcategory" element={<AdminSubCategory />} />
-          <Route path="features" element={<AdminFeatures />} />
-        </Route>
+      {/* Admin routes */}
+      <Route
+        path="/admin"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AdminLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="products" element={<AdminProducts />} />
+        <Route path="brand" element={<AdminBrand />} />
+        <Route path="orders" element={<AdminOrders />} />
+        <Route path="category" element={<AdminCategory />} />
+        <Route path="subcategory" element={<AdminSubCategory />} />
+        <Route path="features" element={<AdminFeatures />} />
+      </Route>
 
-        <Route
-          path="/shop"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <ShoppingLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="home" element={<ShoppingHome />} />
-          <Route path="checkout" element={<ShoppingCheckout />} />
-          <Route path="listing" element={<ShoppingListing />} />
-          <Route path="orders" element={<ShoppingOrder />} />
-          <Route path="search" element={<ShopSearch />} />
-          <Route path="wishlist" element={<Wishlist />} />
-          <Route path="details/:id" element={<ShoppingDetails />} />
-        </Route>
+      {/* Shopping routes */}
+      <Route
+        path="/shop"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <ShoppingLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="home" element={<ShoppingHome />} />
+        <Route path="checkout" element={<ShoppingCheckout />} />
+        <Route path="listing" element={<ShoppingListing />} />
+        <Route path="orders" element={<ShoppingOrder />} />
+        <Route path="search" element={<ShopSearch />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="details/:id" element={<ShoppingDetails />} />
+      </Route>
 
-        {/* page not found  */}
-        <Route path="/unauth-page" element={<UnauthPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+      {/* Other pages */}
+      <Route path="/unauth-page" element={<UnauthPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
