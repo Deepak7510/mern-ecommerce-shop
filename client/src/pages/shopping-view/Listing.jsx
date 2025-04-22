@@ -1,9 +1,8 @@
-import ShoppingProductItem from "@/components/shopping-view/Product-item";
-import ProductFilter from "@/components/shopping-view/ProductFilter";
-import { Button } from "@/components/ui/button";
-import { DropdownMenuRadioItem } from "@/components/ui/dropdown-menu";
-import { sortOptions } from "@/config";
-import { getShoppingProduct } from "@/store/shopping-product-slice";
+import ShoppingProductItem from "../../components/shopping-view/Product-item";
+import { Button } from "../../components/ui/button";
+import { DropdownMenuRadioItem } from "../../components/ui/dropdown-menu";
+import { sortOptions } from "../../config";
+import { getShoppingProduct } from "../../store/shopping-product-slice";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +13,8 @@ import { ArrowDownUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "../../components/ui/skeleton";
+import ProductFilter from "../../components/shopping-view/Productfilter";
 
 function createSearchParamsHelper(filterParams) {
   const queryParams = [];
