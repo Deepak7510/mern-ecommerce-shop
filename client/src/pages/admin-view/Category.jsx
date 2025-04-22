@@ -1,4 +1,4 @@
-import CategoryItems from "@/components/admin-view/category-item";
+import CategoryItems from "@/components/admin-view/Category-item";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
