@@ -20,7 +20,7 @@ function ShoppingProductItem({ product, handleDelete }) {
           <XIcon />
         </div>
       ) : null}
-      <a target="_blank" href={`/shop/details/${product._id}`}>
+      <a href={`/shop/details/${product._id}`}>
         <CardContent className="p-2 lg:p-3">
           <div className="absolute top-3 left-3">
             {product.stock === 0 ? (
