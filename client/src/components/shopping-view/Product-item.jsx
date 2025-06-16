@@ -11,7 +11,7 @@ function ShoppingProductItem({ product, handleDelete }) {
   ).toFixed(0);
 
   return (
-    <Card className="relative h-fit hover:shadow-lg transition-shadow duration-300">
+    <Card className="relative hover:shadow-lg transition-shadow duration-300">
       {handleDelete ? (
         <div
           onClick={() => handleDelete(product._id)}

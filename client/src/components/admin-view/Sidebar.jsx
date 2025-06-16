@@ -9,37 +9,37 @@ export const adminSidebarMenuItem = [
     id: "dashboard",
     label: "Dashboard",
     path: "/admin/dashboard",
-    icon: <LayoutDashboard />,
+    icon: <LayoutDashboard className="w-5 h-5" />,
   },
   {
     id: "brand",
     label: "Brand",
     path: "/admin/brand",
-    icon: <Gitlab />,
+    icon: <Gitlab className="w-5 h-5" />,
   },
   {
     id: "category",
     label: "Category",
     path: "/admin/category",
-    icon: <Shapes />,
+    icon: <Shapes className="w-5 h-5" />,
   },
   {
     id: "subCategory",
     label: "Sub-Category",
     path: "/admin/subCategory",
-    icon: <Shirt />,
+    icon: <Shirt className="w-5 h-5" />,
   },
   {
     id: "products",
     label: "Products",
     path: "/admin/products",
-    icon: <ShoppingBasket />,
+    icon: <ShoppingBasket className="w-5 h-5" />,
   },
   {
     id: "orders",
     label: "Orders",
     path: "/admin/orders",
-    icon: <BadgeCheck />,
+    icon: <BadgeCheck className="w-5 h-5" />,
   },
 ];
 

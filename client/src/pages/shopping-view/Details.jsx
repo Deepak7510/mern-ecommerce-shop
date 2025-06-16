@@ -84,12 +84,15 @@ const ShoppingDetails = () => {
   return (
     <>
       {productDetails?._id ? (
-        <div className="p-20 w-full flex flex-col lg:flex-row justify-center">
+        <div className="px-2 md:p-20 py-20 w-full flex flex-col lg:flex-row justify-center">
           <div className="w-full">
             <div className="grid grid-cols-2 gap-1">
               {productDetails.images.map((item, index) => {
                 return (
-                  <div key={index} className="h-[450px] overflow-hidden">
+                  <div
+                    key={index}
+                    className="h-[230px] md:h-[450px] overflow-hidden"
+                  >
                     <img
                       src={`${import.meta.env.VITE_BACKEND_URI}/${item}`}
                       className=" cursor-move h-full w-full object-cover hover:scale-110 transition-all duration-500"
@@ -100,17 +103,17 @@ const ShoppingDetails = () => {
               })}
             </div>
           </div>
-          <div className="w-full px-10 space-y-1">
+          <div className="w-full px-2 md:px-10 space-y-1">
             <div className="text-base font-medium">
               {productDetails?.category.name}
             </div>
-            <div className="font-medium text-xl">
+            <div className="font-medium text-lg md:text-xl">
               {productDetails?.brand?.name}/
               <span className="text-base">
                 {productDetails?.subcategory?.name}
-              </span>{" "}
+              </span>
             </div>
-            <div className="text-xl">{productDetails?.title}</div>
+            <div className="text-lg md:text-xl">{productDetails?.title}</div>
             <div className="">
               {productDetails.stock === 0 ? (
                 <Badge className={"bg-red-600"}>Out of stock</Badge>
@@ -124,13 +127,13 @@ const ShoppingDetails = () => {
               Special price
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-2xl font-bold">
+              <span className=" text-xl md:text-2xl font-bold">
                 ₹{productDetails?.salePrice}
               </span>
-              <span className="text-gray-500 font-bold text-xl line-through">
+              <span className="text-gray-500 font-bold text-lg md:text-xl line-through">
                 ₹{productDetails?.price}
               </span>
-              <span className="text-2xl font-bold">
+              <span className="text-xl md:text-2xl font-bold">
                 {(
                   ((productDetails?.price - productDetails?.salePrice) /
                     productDetails?.price) *
@@ -163,10 +166,8 @@ const ShoppingDetails = () => {
                 className={`${
                   checkWishlistOrNot == -1 ? "" : "bg-red-500"
                 } border`}
-                size="lg"
                 onClick={handleWishlist}
               >
-                {" "}
                 <Heart />
                 WishList
               </Button>
@@ -175,7 +176,6 @@ const ShoppingDetails = () => {
                   productDetails.stock === 0 ? true : false || isLoading
                 }
                 onClick={handleAddToCart}
-                size="lg"
                 variant="outline"
               >
                 <ShoppingCart />{" "}

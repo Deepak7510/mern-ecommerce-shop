@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItems, upadateCartQuantity } from "@/store/cart-slice";
@@ -12,10 +12,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { getShoppingProduct } from "@/store/shopping-product-slice";
 
 function UserCartItemsContent({ cartItems }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { shoppingProductList } = useSelector((state) => state.shoppingProduct);
   const title = cartItems?.title
     .split(" ")
     .splice(0, 4)
@@ -25,7 +27,10 @@ function UserCartItemsContent({ cartItems }) {
     ((cartItems.price - cartItems.salePrice) / cartItems.price) *
     100
   ).toFixed(0);
-  const { shoppingProductList } = useSelector((state) => state.shoppingProduct);
+
+  useEffect(() => {
+    dispatch(getShoppingProduct({ filterParams: {}, sortParams: null }));
+  }, [dispatch]);
 
   function handleUpdateQuantity(getCartItme, typeOfAction, newSize) {
     if (typeOfAction === "plus") {

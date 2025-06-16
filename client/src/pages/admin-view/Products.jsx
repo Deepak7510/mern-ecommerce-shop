@@ -98,6 +98,7 @@ const AdminProducts = () => {
     });
     setOpenCreateProduct(false);
     setErrors({});
+    setSubCategory([]);
     setEditIdAndImages({ id: "", images: [] });
   };
 
@@ -119,10 +120,11 @@ const AdminProducts = () => {
     newFormData.append("subcategory", formData.subcategory);
     newFormData.append("size", formData.size);
     newFormData.append("stock", formData.stock);
-    for (let image of formData.images) {
-      newFormData.append("images", image);
+    if (formData.images.length > 0) {
+      for (let image of formData.images) {
+        newFormData.append("images", image);
+      }
     }
-
     const action = editIdAndImages.id
       ? updateProduct({ newFormData, id: editIdAndImages.id })
       : addProduct(newFormData);
@@ -140,9 +142,6 @@ const AdminProducts = () => {
 
   useEffect(() => {
     if (formData.category) {
-      if (!editIdAndImages.id) {
-        setFormData({ ...formData, subcategory: "" });
-      }
       const filterSubCategory = subCategoryList.filter((item) => {
         return item.category._id === formData.category;
       });

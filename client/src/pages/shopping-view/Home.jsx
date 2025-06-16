@@ -75,12 +75,12 @@ function ShoppingHome() {
 
       {/* category section  */}
 
-      <section className="py-6 px-4 md:px-20">
+      <section className="py-6 px-2 md:px-20">
         <div>
           <h2 className="text-xl lg:text-3xl font-bold text-center mb-6">
             Shop By Category
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-8">
             {categoryList && categoryList.length > 0
               ? categoryList.map((item) => {
                   return <CategoryCard category={item} key={item._id} />;
@@ -91,7 +91,7 @@ function ShoppingHome() {
       </section>
 
       {/* feature section  */}
-      <section className="py-6 px-4 md:px-20">
+      <section className="py-6 px-2 md:px-20">
         <div>
           <h2 className=" text-xl md:text-3xl font-bold text-center mb-6">
             Feature Products
