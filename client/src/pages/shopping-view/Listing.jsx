@@ -82,7 +82,7 @@ function ShoppingListing() {
         <div className="sticky top-0 z-10 bg-white  flex flex-col md:flex-row justify-between items-center px-10 pb-1">
           <div className="font-extrabold text-lg">All Product</div>
           <div className="flex items-center gap-4">
-            <span className="font-semibold">
+            <span className="font-medium">
               {shoppingProductList?.length} Products
             </span>
             <DropdownMenu>
@@ -120,8 +120,8 @@ function ShoppingListing() {
         </div>
 
         {/* show all listing  product  */}
-        <div className="w-full py-3 px-1 lg:px-2">
-          <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="w-full py-3 px-1 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-10">
             {isLoading ? (
               Array(10)
                 .fill(null)

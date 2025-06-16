@@ -76,7 +76,6 @@ function ShoppingCheckout() {
       });
     } else if (paymentMethod === "Razorpay") {
       dispatch(processPeyment({ totalAmount: totalSalePrice })).then((data) => {
-        console.log(data);
         if (data.payload.success) {
           const options = {
             key: import.meta.env.VITE_ROZARPAY_SECRET_KEY, // Enter the Key ID generated from the Dashboard

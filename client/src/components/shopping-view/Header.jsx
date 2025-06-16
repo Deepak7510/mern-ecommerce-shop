@@ -6,7 +6,14 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { Heart, LogOut, Menu, ShoppingCart, UserCog } from "lucide-react";
+import {
+  Heart,
+  LogOut,
+  Menu,
+  SearchIcon,
+  ShoppingCart,
+  UserCog,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCategory } from "@/store/category-slice";
@@ -70,15 +77,15 @@ const MenuItems = ({ setOpenNavbar }) => {
   }
 
   return (
-    <nav className="flex gap-5 flex-col lg:flex-row">
+    <nav className="flex gap-8 flex-col lg:flex-row">
       <label
-        className="font-medium"
+        className="cursor-pointer"
         onClick={() => handleNavigateToListingPage(null, "home")}
       >
         Home
       </label>
       <label
-        className="font-medium"
+        className="cursor-pointer"
         onClick={() => handleNavigateToListingPage(null, "products")}
       >
         Products
@@ -86,7 +93,7 @@ const MenuItems = ({ setOpenNavbar }) => {
       {categoryList.slice(0, 5).map((item) => (
         <label
           onClick={() => handleNavigateToListingPage(item._id, "category")}
-          className="font-medium cursor-pointer"
+          className="cursor-pointer"
           key={item._id}
         >
           {item.name}
@@ -124,8 +131,12 @@ const HeaderRightContent = ({ setOpenNavbar }) => {
 
   return (
     <div className="flex lg:items-center flex-col lg:flex-row gap-5">
-      <Label className="font-medium" onClick={handleNavigate}>
-        Search
+      <Label
+        className="flex gap-2 cursor-pointer items-center font-normal"
+        onClick={handleNavigate}
+      >
+        <SearchIcon className="w-4 h-4 hidden md:block" />
+        <span className="text-base"> Search</span>
       </Label>
       <Sheet
         open={openCartSheet}
@@ -133,15 +144,13 @@ const HeaderRightContent = ({ setOpenNavbar }) => {
           setOpenCartSheet(false);
         }}
       >
-        <Button
-          className="w-fit border-none px-0"
+        <Label
+          className="flex gap-2 cursor-pointer items-center font-normal"
           onClick={() => setOpenCartSheet(true)}
-          variant="none"
-          size="sm"
         >
-          <span className="font-medium text-base">Cart</span>
-          <ShoppingCart className="w-6 h-6" />
-        </Button>
+          <ShoppingCart className="w-4 h-4 hidden md:block" />
+          <span className="text-base">Cart</span>
+        </Label>
         {/* cart  ------------ */}
         <UserCartWrapper
           setOpenCartSheet={setOpenCartSheet}
@@ -187,7 +196,7 @@ const ShoppingHeader = () => {
   const [openNavbar, setOpenNavbar] = useState(false);
   return (
     <header className="bg-white z-50 fixed top-0 w-full border-b">
-      <div className="flex justify-between items-center h-16 px-4 md:px-8">
+      <div className="max-w-[1600px] mx-auto flex justify-between items-center h-16 px-4 md:px-8">
         <Link to={"/shop/home"} className="flex items-start gap-2">
           <img src={ShopLogo} alt={"Shop-logo"} className="h-14" />
         </Link>

@@ -11,17 +11,17 @@ function ShoppingProductItem({ product, handleDelete }) {
   ).toFixed(0);
 
   return (
-    <Card className="shadow-lg relative h-fit hover:shadow-xl transition-shadow duration-300">
+    <Card className="relative h-fit hover:shadow-lg transition-shadow duration-300">
       {handleDelete ? (
         <div
           onClick={() => handleDelete(product._id)}
-          className="cursor-pointer absolute top-3 right-3"
+          className="cursor-pointer absolute top-3 left-3"
         >
-          <XIcon />
+          <XIcon className="text-white" />
         </div>
       ) : null}
       <a href={`/shop/details/${product._id}`}>
-        <CardContent className="p-2 lg:p-3">
+        <CardContent className="p-2">
           <div className="absolute top-3 left-3">
             {product.stock === 0 ? (
               <Badge className={"bg-red-600"}>Out of stock</Badge>
@@ -34,24 +34,25 @@ function ShoppingProductItem({ product, handleDelete }) {
             alt={product.title}
             className="w-full h-48 lg:h-64 object-cover rounded-sm"
           />
-          <div className="flex justify-between items-center text-sm font-semibold mt-1">
-            <div className="text-sm">{product.brand.name}</div>
-            <div className="text-slate-500">{product.subcategory.name}</div>
-          </div>
-          <div className="text-gray-600 text-sm lg:text-base">
-            {productTitle}
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-md lg:text-lg font-bold">
-              ₹{product.salePrice}
-            </span>
-            <span className="text-gray-500 line-through text-sm lg:text:md">
-              ₹{product.price}
-            </span>
-            <span>{discount}% off</span>
-          </div>
-          <div className="text-gray-600 text-xs lg:text-sm">
-            Size-{product.size}
+          <div className="p-2">
+            <div className="flex justify-between items-center text-sm font-semibold mt-1">
+              <div className="text-sm">{product.brand.name}</div>
+              <div className="text-slate-500">{product.subcategory.name}</div>
+            </div>
+            <div className="text-gray-600 text-sm lg:text-base">
+              {productTitle}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-md lg:text-lg font-bold">
+                ₹{product.salePrice}
+              </span>
+              <span className="text-gray-500 line-through text-sm lg:text:md">
+                ₹{product.price}
+              </span>
+              <Badge className="absolute top-3 right-3 text-xs">
+                {discount}% off
+              </Badge>
+            </div>
           </div>
         </CardContent>
       </a>

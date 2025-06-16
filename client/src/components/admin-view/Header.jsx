@@ -21,7 +21,7 @@ const AdminHeader = ({ setOpen }) => {
     });
   };
   return (
-    <header className="flex items-center justify-center px-4 py-3 fixed w-full right-0 top-0">
+    <header className="flex bg-white z-50 items-center justify-center px-4 py-1.5 border border-b sticky top-0">
       <Button
         onClick={() => {
           setOpen(true);
@@ -34,6 +34,7 @@ const AdminHeader = ({ setOpen }) => {
       <div className="flex flex-1 justify-end">
         <Button
           onClick={logoutHandler}
+          size={"sm"}
           className="inline-flex gap-2 items-center rounded-md px-4 py-2 text-sm font-medium shadow"
         >
           <LogOut />

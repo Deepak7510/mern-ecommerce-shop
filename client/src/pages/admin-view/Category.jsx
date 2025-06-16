@@ -1,5 +1,6 @@
 import CategoryItems from "@/components/admin-view/Category-item";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Sheet,
@@ -90,116 +91,118 @@ const AdminCategory = () => {
   );
 
   return (
-    <>
-      <div className="mt-14 mb-5 w-full flex justify-end">
-        <Button onClick={() => setOpenCreateCategory(true)}>
-          Add New Category
-          <PlusCircleIcon />
-        </Button>
-      </div>
-      <div className="w-full">
-        {!isLoading ? (
-          <Table className="text-[1rem]">
-            <TableHeader>
-              <TableRow>
-                <TableHead>SR No.</TableHead>
-                <TableHead>Category Name</TableHead>
-                <TableHead>Image</TableHead>
-                <TableHead>Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {categoryList.length > 0 ? (
-                categoryList.map((item, index) => (
-                  <CategoryItems
-                    key={item.name}
-                    srNo={index}
-                    category={item}
-                    setFormData={setFormData}
-                    setEditedIdAndOldLogo={setEditedIdAndOldLogo}
-                    setOpenCreateCategory={setOpenCreateCategory}
-                  />
-                ))
-              ) : (
-                <TableRow className="font-semibold">
-                  <TableCell>No Category</TableCell>
+    <Card>
+      <CardContent className="py-4">
+        <div className="w-full flex justify-between">
+          <h1 className="text-2xl font-bold">Categories</h1>
+          <Button size={"sm"} onClick={() => setOpenCreateCategory(true)}>
+            <PlusCircleIcon />
+            Add New
+          </Button>
+        </div>
+        <div className="w-full">
+          {!isLoading ? (
+            <Table className="text-[1rem]">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>SR No.</TableHead>
+                  <TableHead>Category Name</TableHead>
+                  <TableHead>Image</TableHead>
+                  <TableHead>Action</TableHead>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        ) : (
-          Array(10)
-            .fill(null)
-            .map((_, index) => {
-              return (
-                <div key={index} className="space-y-1 mb-3">
-                  <Skeleton className="h-12 w-full]" />
-                  <Skeleton className="h-4 w-1/2" />
-                </div>
-              );
-            })
-        )}
-      </div>
-      <Sheet open={openCreateCategory} onOpenChange={resetForm}>
-        <SheetContent
-          side="right"
-          className="overflow-auto"
-          aria-describedby={undefined}
-        >
-          <SheetHeader>
-            <SheetTitle>
-              {editedIdAndOldLogo.id ? "Edit Category" : "Add New Category"}
-            </SheetTitle>
-          </SheetHeader>
-          <form onSubmit={onSubmit}>
-            <div className="mt-10 space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="name" className="text-md">
-                  Name
-                </Label>
-                <Input
-                  onChange={handleChange}
-                  value={formData.name}
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Enter the name"
-                />
-                {errors.name && (
-                  <p className="text-red-700">{errors.name[0]}</p>
+              </TableHeader>
+              <TableBody>
+                {categoryList.length > 0 ? (
+                  categoryList.map((item, index) => (
+                    <CategoryItems
+                      key={item.name}
+                      srNo={index}
+                      category={item}
+                      setFormData={setFormData}
+                      setEditedIdAndOldLogo={setEditedIdAndOldLogo}
+                      setOpenCreateCategory={setOpenCreateCategory}
+                    />
+                  ))
+                ) : (
+                  <TableRow className="font-semibold">
+                    <TableCell>No Category</TableCell>
+                  </TableRow>
                 )}
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="logo" className="text-md">
-                  Logo
-                </Label>
-                <Input
-                  onChange={handleChange}
-                  id="logo"
-                  name="logo"
-                  type="file"
-                />
-                {errors.logo && (
-                  <p className="text-red-700">{errors.logo[0]}</p>
-                )}
-              </div>
-              {editedIdAndOldLogo.id && (
-                <div className="relative">
-                  <h1>Old Image</h1>
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URI}/${
-                      editedIdAndOldLogo.oldLogo
-                    }`}
-                    className="w-1/2 h-[150px] object-cover rounded-t-lg"
+              </TableBody>
+            </Table>
+          ) : (
+            Array(10)
+              .fill(null)
+              .map((_, index) => {
+                return (
+                  <div key={index} className="space-y-1 mb-3">
+                    <Skeleton className="h-12 w-full]" />
+                  </div>
+                );
+              })
+          )}
+        </div>
+        <Sheet open={openCreateCategory} onOpenChange={resetForm}>
+          <SheetContent
+            side="right"
+            className="overflow-auto"
+            aria-describedby={undefined}
+          >
+            <SheetHeader>
+              <SheetTitle>
+                {editedIdAndOldLogo.id ? "Edit Category" : "Add New Category"}
+              </SheetTitle>
+            </SheetHeader>
+            <form onSubmit={onSubmit}>
+              <div className="mt-10 space-y-2">
+                <div className="space-y-1">
+                  <Label htmlFor="name" className="text-md">
+                    Name
+                  </Label>
+                  <Input
+                    onChange={handleChange}
+                    value={formData.name}
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Enter the name"
                   />
+                  {errors.name && (
+                    <p className="text-red-700">{errors.name[0]}</p>
+                  )}
                 </div>
-              )}
-              <Button className="w-full">Save</Button>
-            </div>
-          </form>
-        </SheetContent>
-      </Sheet>
-    </>
+                <div className="space-y-1">
+                  <Label htmlFor="logo" className="text-md">
+                    Logo
+                  </Label>
+                  <Input
+                    onChange={handleChange}
+                    id="logo"
+                    name="logo"
+                    type="file"
+                  />
+                  {errors.logo && (
+                    <p className="text-red-700">{errors.logo[0]}</p>
+                  )}
+                </div>
+                {editedIdAndOldLogo.id && (
+                  <div className="relative">
+                    <h1>Old Image</h1>
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URI}/${
+                        editedIdAndOldLogo.oldLogo
+                      }`}
+                      className="w-1/2 h-[150px] object-cover rounded-t-lg"
+                    />
+                  </div>
+                )}
+                <Button className="w-full">Save</Button>
+              </div>
+            </form>
+          </SheetContent>
+        </Sheet>
+      </CardContent>
+    </Card>
   );
 };
 

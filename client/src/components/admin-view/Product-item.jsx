@@ -5,16 +5,19 @@ import { useDispatch } from "react-redux";
 import { deleteProduct, fetchAllProducts } from "@/store/product-slice";
 import { toast } from "@/hooks/use-toast";
 import { EditIcon, TrashIcon } from "lucide-react";
-
-const ProducItem = ({
-  srNo,
-  product,
-  setFormData,
-  setEditIdAndImages,
-  setOpenCreateProduct,
-}) => {
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+function DeleteButton({ getProductId }) {
   const dispatch = useDispatch();
-
   const deleteHandler = (id) => {
     dispatch(deleteProduct(id)).then((data) => {
       if (data?.payload?.success) {
@@ -25,7 +28,38 @@ const ProducItem = ({
       }
     });
   };
-
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className={"text-red-500"} size={"sm"} variant={"outline"}>
+          <TrashIcon />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={() => deleteHandler(getProductId)}>
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+const ProducItem = ({
+  srNo,
+  product,
+  setFormData,
+  setEditIdAndImages,
+  setOpenCreateProduct,
+}) => {
   return (
     <TableRow>
       <TableCell>{srNo + 1}</TableCell>
@@ -76,17 +110,12 @@ const ProducItem = ({
             });
             setEditIdAndImages({ id: product._id, images: product.images });
           }}
-          className={"h-8 px-3 py-1 text-sm bg-yellow-600"}
+          variant={"outline"}
+          size={"sm"}
         >
-          Edit <EditIcon />{" "}
+          <EditIcon />
         </Button>
-        <Button
-          onClick={() => deleteHandler(product._id)}
-          className={"h-8 px-3 bg-red-600 py-1 text-sm"}
-        >
-          Delete
-          <TrashIcon />
-        </Button>
+        <DeleteButton getProductId={product._id} />
       </TableCell>
     </TableRow>
   );

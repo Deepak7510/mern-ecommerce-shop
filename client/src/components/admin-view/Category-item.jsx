@@ -5,14 +5,18 @@ import { toast } from "@/hooks/use-toast";
 import { useDispatch } from "react-redux";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { EditIcon, TrashIcon } from "lucide-react";
-
-const CategoryItems = ({
-  srNo,
-  category,
-  setOpenCreateCategory,
-  setFormData,
-  setEditedIdAndOldLogo,
-}) => {
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+function DeleteButton({ getCategoryId }) {
   const dispatch = useDispatch();
   const deleteHandler = (id) => {
     dispatch(deleteCategory(id)).then((data) => {
@@ -25,40 +29,64 @@ const CategoryItems = ({
     });
   };
   return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className={"text-red-500"} size={"sm"} variant={"outline"}>
+          <TrashIcon />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={() => deleteHandler(getCategoryId)}>
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
+const CategoryItems = ({
+  srNo,
+  category,
+  setOpenCreateCategory,
+  setFormData,
+  setEditedIdAndOldLogo,
+}) => {
+  return (
     <TableRow>
       <TableCell>{srNo + 1}</TableCell>
       <TableCell>{category.name}</TableCell>
       <TableCell>
-        <div>
-          <div className="relative w-[50px] h-[50px] ">
-            <img
-              src={`${import.meta.env.VITE_BACKEND_URI}/${category.logo}`}
-              alt={category?.name}
-              className="h-full w-full  object-cover rounded-lg"
-            />
-          </div>
+        <div className="relative w-[40px] h-[40px] ">
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URI}/${category.logo}`}
+            alt={category?.name}
+            className="h-full w-full  object-cover rounded-lg"
+          />
         </div>
       </TableCell>
       <TableCell className="flex gap-4">
-        {" "}
         <Button
           onClick={() => {
             setOpenCreateCategory(true);
             setFormData({ name: category.name });
             setEditedIdAndOldLogo({ id: category._id, oldLogo: category.logo });
           }}
-          className={"h-8 px-3 py-1 text-sm bg-yellow-600"}
+          size={"sm"}
+          variant={"outline"}
         >
-          Edit
           <EditIcon />
         </Button>
-        <Button
-          onClick={() => deleteHandler(category._id)}
-          className={"h-8 px-3 bg-red-600 py-1 text-sm"}
-        >
-          Delete
-          <TrashIcon />
-        </Button>
+        <DeleteButton getCategoryId={category._id} />
       </TableCell>
     </TableRow>
   );

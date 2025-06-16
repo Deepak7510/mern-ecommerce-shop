@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardHeader, CardTitle } from "../ui/card";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
@@ -11,20 +11,25 @@ const CategoryCard = ({ category }) => {
     const currentFilter = { category: [getCategoryId] };
     sessionStorage.setItem("filter", JSON.stringify(currentFilter));
     setSearchParams(new URLSearchParams({ category: [getCategoryId] }));
-    navigate(`/shop/listing`); // 🔹 Query Add किया
+    navigate(`/shop/listing`);
   }
 
   return (
-    <Card onClick={() => handleNavigate(category._id)}>
-      <CardHeader className="p-2 lg:p-3">
-        <div className="h-36 lg:h-52 w-full">
+    <Card
+      className="cursor-pointer"
+      onClick={() => handleNavigate(category._id)}
+    >
+      <CardHeader className="p-2">
+        <div className="h-36 lg:h-48 w-full">
           <img
             src={`${import.meta.env.VITE_BACKEND_URI}/${category.logo}`}
-            alt=""
+            alt="category logo"
             className="h-full w-full object-cover object-center"
           />
         </div>
-        <CardTitle className="text-center text-lg">{category.name}</CardTitle>
+        <CardTitle className="text-center font-medium text-base">
+          {category.name}
+        </CardTitle>
       </CardHeader>
     </Card>
   );

@@ -21,7 +21,7 @@ function ProductFilter({ filter, handleFilter }) {
   }, [dispatch]);
 
   return (
-    <div className="rounded-lg shadow-sm flex  flex-col h-full w-fit lg:w-64 overflow-auto">
+    <div className="rounded-lg shadow-sm flex  flex-col h-full w-fit lg:w-64 overflow-auto border-r">
       <div className=" sticky top-0 z-10 bg-white px-4 py-1">
         <h2 className="text-lg font-extrabold">Product Filter</h2>
       </div>
