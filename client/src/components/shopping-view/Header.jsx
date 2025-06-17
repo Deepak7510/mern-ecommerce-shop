@@ -77,7 +77,7 @@ const MenuItems = ({ setOpenNavbar }) => {
   }
 
   return (
-    <nav className="flex gap-8 flex-col lg:flex-row">
+    <nav className="flex gap-5 flex-col lg:flex-row">
       <label
         className="cursor-pointer"
         onClick={() => handleNavigateToListingPage(null, "home")}
