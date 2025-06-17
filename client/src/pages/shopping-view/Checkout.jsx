@@ -101,8 +101,8 @@ function ShoppingCheckout() {
               });
             },
             prefill: {
-              name: "Gaurav Kumar",
-              email: "gaurav.kumar@example.com",
+              name: user.userName,
+              email: user.email,
               contact: "9000090000",
             },
             notes: {

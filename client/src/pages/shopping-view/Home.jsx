@@ -93,7 +93,7 @@ function ShoppingHome() {
       {/* feature section  */}
       <section className="py-6 px-2 md:px-20">
         <div>
-          <h2 className=" text-xl md:text-3xl font-bold text-center mb-6">
+          <h2 className="text-xl md:text-3xl font-bold text-center mb-6">
             Feature Products
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 lg:gap-6">
