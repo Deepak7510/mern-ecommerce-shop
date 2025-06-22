@@ -27,7 +27,7 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="py-6 px-2 md:px-20">
+    <div className="py-12 px-2 md:px-20">
       <div>
         {wishlistList && wishlistList.length > 0 ? (
           <>
