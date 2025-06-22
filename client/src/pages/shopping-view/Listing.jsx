@@ -73,7 +73,7 @@ function ShoppingListing() {
   }
 
   return (
-    <div className="container mx-auto flex h-screen gap-3 pt-20">
+    <div className="py-6 flex h-screen gap-3 pt-20">
       {/* filter Side Bar  */}
       <ProductFilter handleFilter={handleFilter} filter={filter} />
 
@@ -121,7 +121,7 @@ function ShoppingListing() {
 
         {/* show all listing  product  */}
         <div className="w-full py-3 px-1 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
             {isLoading ? (
               Array(10)
                 .fill(null)

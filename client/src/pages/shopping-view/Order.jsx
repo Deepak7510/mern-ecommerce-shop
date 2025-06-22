@@ -21,7 +21,7 @@ function ShoppingOrder() {
           className="h-full w-full object-cover object-center"
         />
       </div>
-      <div className="container mx-auto py-6 px-2">
+      <div className="py-6 px-2 md:px-20">
         <OrderTable order={orderList} />
       </div>
     </div>
